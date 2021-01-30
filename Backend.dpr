@@ -19,11 +19,11 @@ begin
 
   App.Use(Jhonson);
 
-  //autenticaÁ„o de usuario usando o basic auth
+  //autentica√ß√£o de usuario usando o basic auth
   App.Use(HorseBasicAuthentication(
     function(const AUsername, APassword: string): Boolean
     begin
-      Result := AUsername.Equals('alvaro') and APassword.Equals('whp2xlid');
+      Result := AUsername.Equals('alvaro') and APassword.Equals('senha123');
     end));
 
   Users := TJSONArray.Create;
@@ -43,11 +43,11 @@ begin
       begin
         User := Req.Body<TJSONObject>.Clone as TJSONObject;
         Users.AddElement(User);
-        //define status code usando Horse.Commons ao invÈs de repassar manualmente o status
+        //define status code usando Horse.Commons ao inv√©s de repassar manualmente o status
         Res.Send<TJSONAncestor>(User.Clone).Status(THTTPStatus.Created);
       end);
 
-  //deleta um JSON da memÛria usando DELETE
+  //deleta um JSON da mem√≥ria usando DELETE
     //deleta usando URL params
   App.Delete('/users/:id',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
@@ -56,10 +56,10 @@ begin
       begin
         //
         id := Req.Params.Items['id'].ToInteger;
-        //usa .free para n„o dar memory leak
-          //Usa o Pred para pegar o Ìndice 0, seria o mesmo com (id - 1)
+        //usa .free para n√£o dar memory leak
+          //Usa o Pred para pegar o √≠ndice 0, seria o mesmo com (id - 1)
         Users.Remove(Pred(id)).Free;
-        //define status code usando Horse.Commons ao invÈs de repassar manualmente o status
+        //define status code usando Horse.Commons ao inv√©s de repassar manualmente o status
         Res.Send<TJSONAncestor>(Users.Clone).Status(THTTPStatus.NoContent);
       end);
 
