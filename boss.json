@@ -1,0 +1,14 @@
+{
+	"name": "API Rest",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "src",
+	"projects": [],
+	"dependencies": {
+		"github.com/hashload/horse": "^v2.0.6",
+		"github.com/hashload/horse-basic-auth": "^v1.1.4",
+		"github.com/hashload/horse-compression": "^v1.1.1",
+		"github.com/hashload/jhonson": "^1.0.7"
+	}
+}
